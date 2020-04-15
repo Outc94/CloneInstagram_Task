@@ -1,0 +1,46 @@
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="main-form border">
+<h1 class="text-center">Instagram</h1>
+<h5 class="text-center">Sign up to see photos and videos from your friends.</h5>
+<%= form_with(model: @user, local: true) do |f| %>
+  <div class="form-group">
+  <%= f.text_field :full_name, placeholder:"Full Name", class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+  <%= f.text_field :username, placeholder:"Username", class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+  <%= f.email_field :email, placeholder:"Email", class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+  <%= f.password_field :password, placeholder:"Password", class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+  <%= f.password_field :password_confirmation, placeholder:"Confirm Password", class:"form-control" %>
+  </div>
+
+  <div class="form-group ">
+  <%= f.submit "Sign up", class:"form-control btn btn-info" %>
+  </div>
+<% end %>
+</div>
+<div class="main-form border">
+  <label>Have an account? <a><%= link_to "Log in", new_session_path %><a></label>
+</div>
+<nav class="navbar navbar-expand-lg fixed-bottom navbar-light" style="background-color: #fff;color:black">
+  <a class="navbar-brand" href="#" style="margin:auto">© 2020 INSTAGRAM FROM FACEBOOK</a>
+  </nav>

@@ -1,0 +1,57 @@
+<div class="super">
+
+<p id="notice"><%= notice %></p>
+
+<% if logged_in? %>
+  <% check = 0, profile_pic='1', id=nil, nam=nil %>
+  <% @profiles.each do |profile| %>
+    <% if current_user.id == profile.user_id %>
+      <% check = 1%>
+      <%nam= profile.user.full_name%>
+      <%profile_pic = profile.image.url %>
+
+    <% end %>
+  <% end %>
+  <% if check==1 %>
+    <p><%= image_tag profile_pic, size:"150x150",class:"rounded-circle" unless profile_pic.blank? %>
+    <h2><%= nam%></h2>
+    </p>
+  <% else %>
+    <p><%=image_tag "user.png", size:"150x150",class:"rounded-circle" %></p>
+    <%= nam%>
+  <% end %>
+<% end %>
+<div id="right">
+    <button class="btn btn-info">
+      <a>
+        <%= link_to 'Add New Post', new_post_path %>
+      </a>
+    </button>
+  </div>
+    <% @posts.each do |post| %>
+      <div class="p-3 mb-2 bg-white text-dark border">
+      <p>
+      <strong><%= post.user.username %></strong>
+      </p>
+      <p>
+        <% if post.texts %>
+          <%= post.texts %>
+        <% end %>
+      </p>
+      <p>
+        <% if post.image.url %>
+          <%= image_tag post.image.url %>
+        <% end %>
+      </p>
+      <p>
+      <a><%= link_to 'Show', post, class:'btn btn-info' %></a>
+      <% if logged_in? %>
+        <% if current_user.id == post.user_id %>
+          <a><%= link_to 'Edit', edit_post_path(post),class:'btn btn-success' %></a>
+          <a><%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure you want to delete this post?'}, class:'btn btn-danger' %></a>
+        <% end %>
+      <% end %>
+      </p>
+      </div>
+    <% end %>
+</div>

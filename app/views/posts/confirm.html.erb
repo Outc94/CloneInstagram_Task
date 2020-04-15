@@ -1,0 +1,18 @@
+<div class="super bg-white text-dark border">
+<h3>Is It What You Want To Post ? </h3>
+
+<%= form_with(model: @post, url: posts_path, local:true) do |form| %>
+   <p>
+    <strong>Content:</strong>
+    <%= @post.texts %>
+    <%= form.hidden_field :texts %>
+   </p>
+    <p>
+    <strong>Image:</strong>
+    <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+    <%= form.hidden_field :image_cache%>
+    </p>
+    <%= form.submit "Confirm", class:"btn btn-success" %>
+<% end %>
+</div>
+<%= link_to 'Return', posts_path,class:'btn btn-primary' %>

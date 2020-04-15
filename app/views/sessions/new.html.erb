@@ -1,0 +1,23 @@
+<div class="main-form border">
+  <h1 class="text-center">Instagram</h1>
+  <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+    <div class="form-group">
+    <%= f.email_field :email, placeholder:"email", class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= f.password_field :password, placeholder:"Password", class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+    <%= f.submit "Log in", class:"form-control btn btn-info" %>
+    </div>
+  <% end %>
+</div>
+<div class="main-form border">
+  <label>Don't have an account? <a><%= link_to "Sign up", new_user_path %><a></label>
+</div>
+<nav class="navbar navbar-expand-lg fixed-bottom navbar-light" style="background-color: #fff;color:black">
+  <a class="navbar-brand" href="#" style="margin:auto">© 2020 INSTAGRAM FROM FACEBOOK</a>
+</nav>

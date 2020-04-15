@@ -1,0 +1,33 @@
+<div class="super">
+  <p id="notice"><%= notice %></p>
+  <div class="p-3 mb-2 bg-white text-dark border">
+    <p>
+      <strong><%= @post.user.username %><strong>
+    </p>
+
+    <p>
+      <% if @post.texts %>
+        <small><%= @post.texts %></small>
+      <% end %>
+    </p>
+
+    <p>
+      <% if @post.image.url %>
+        <%= image_tag @post.image.url %>
+      <% end %>
+    </p>
+    <%= link_to 'Back', posts_path, class:'btn btn-info' %>
+    <% if logged_in? %>
+      <% if current_user.id == @post.user_id %>
+        <%= link_to 'Edit', edit_post_path(@post), class:'btn btn-success' %>
+    <% end %>
+    <% unless @post.user_id == current_user.id %>
+      <% if @favorite.present? %>
+        <%= link_to 'Unlike', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
+      <% else %>
+        <%= link_to 'Like', favorites_path(post_id: @post.id), method: :post, class: 'btn btn-primary' %>
+      <% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

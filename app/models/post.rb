@@ -9,4 +9,6 @@ class Post < ApplicationRecord
   def any_present?
     if %w(texts image).all?{|attr| self[attr].blank?}
       errors.add :base, "Both Fields Cannot be Blank. Fill in one Please"
+    end
+  end
 end

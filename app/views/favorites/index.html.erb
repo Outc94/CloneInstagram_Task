@@ -1,0 +1,32 @@
+<div class="super">
+  <% if logged_in? %>
+    <% check = 0, profile_pic='1', id=nil, nam=nil %>
+    <% @profiles.each do |profile| %>
+      <% if current_user.id == profile.user_id %>
+        <% check = 1%>
+        <%nam= profile.user.full_name%>
+        <%profile_pic = profile.image.url %>
+      <% end %>
+    <% end %>
+    <% if check==1 %>
+      <p>
+        <%= image_tag profile_pic, size:"150x150",class:"rounded-circle" unless profile_pic.blank? %>
+        <h2><%= nam%></h2>
+      </p>
+    <% else %>
+      <p><%=image_tag "user.png", size:"150x150",class:"rounded-circle" %></p>
+      <%= nam%>
+    <% end %>
+  <% end %>
+  <h5>My Favorite Post(s)</h5>
+  <% @favorite.each do |fav| %>
+    <%if current_user.id == fav.user.id%> <div>
+    <div class="p-3 mb-2 bg-white text-dark border">
+    <p><strong><%= fav.post.user.username%></strong></p><br>
+    <small><%= fav.post.texts%></small>
+    <div><%= image_tag fav.post.image.url,alt:"No pic" unless fav.post.image.url.blank? %></div>
+    </div>
+    <%end%>
+  <% end %>
+</div>
+<%= link_to 'Return', posts_path,class:'btn btn-primary' %>

@@ -1,0 +1,13 @@
+<h1> Your Post is Completed</h1>
+<h4>Name: <%= @post.user.username %></h4>
+<h4> Confirmation of Post content </h4>
+<p>
+  <strong>Content:</strong> <% if @post.texts %>
+                          <%= @post.texts %>
+                          <% end %>
+</p>
+<p>
+  <strong>Image:<strong> <% if @post.image.url size:"20x20"  %>
+                         <%= image_tag @post.image.url %>
+                         <% end %>
+</p>

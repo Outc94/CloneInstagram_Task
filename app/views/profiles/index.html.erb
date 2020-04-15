@@ -1,0 +1,41 @@
+<div class="super">
+<p id="notice"><%= notice %></p>
+
+<% if logged_in? %>
+  <% check = 0, profile_pic='1', id=nil, nam=nil %>
+  <% @profiles.each do |profile| %>
+    <% if current_user.id == profile.user_id %>
+      <% check = 1%>
+      <%nam= profile.user.full_name%>
+      <%profile_pic = profile.image.url %>
+
+    <% end %>
+  <% end %>
+  <% if check==1 %>
+    <p>
+      <%= image_tag profile_pic, size:"150x150",class:"rounded-circle" unless profile_pic.blank? %>
+
+    <button class="btn btn-info">
+      <%= link_to 'Edit Profile', new_profile_path %>
+    </button>
+    </p>
+    <p><h2><%= nam%></h2>
+    <button class="btn btn-success">
+      <%= link_to 'RETURN', posts_path %>
+    </button>
+    </p>
+  <% else %>
+    <p>
+    <%=image_tag "user.png", size:"150x150",class:"rounded-circle" %>
+    <button class="btn btn-info">
+      <%= link_to 'Edit Profile', new_profile_path %>
+    </button>
+    </p>
+
+    <h2><%= nam%></h2>
+    <button class="btn btn-primary">
+      <%= link_to 'RETURN', posts_path %>
+    </button>
+  <% end %>
+
+<% end %>
