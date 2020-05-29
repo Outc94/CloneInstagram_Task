@@ -41,3 +41,20 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development do
   gem 'letter_opener_web'
 end
+
+
+group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug'
+  # Access an IRB console on exception pages or by using <%= console %> in views
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+
+  gem "rspec-rails"
+  gem 'spring-commands-rspec'
+  gem "factory_bot_rails"
+  gem 'faker'
+  gem "database_cleaner"
+  gem "launchy"
+  gem 'selenium-webdriver'
+end
